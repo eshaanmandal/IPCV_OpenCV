@@ -3,6 +3,7 @@ import cv2 as cv
 import math
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 plt.rcParams['figure.figsize']=[6,6]
 
 
@@ -25,11 +26,15 @@ def histogram(img, bins=256):
         for j in i:
             hist_array[math.ceil(int(j)*(bins-1)/255)]+=1
     return  hist_array
-    
 
-img = cv.imread('sample.jpg')
+nbins = input("BINS (for default press d): ")
+nbins =  256 if nbins == 'd' else int(nbins)
+img_path = 'fox.jpeg'
+
+
+img = cv.imread(img_path)
 img = preprocess(img)
-nbins = 64
+ 
 h = histogram(img, bins=nbins)
 plt.bar(range(nbins),h,color='green')
 plt.show()
