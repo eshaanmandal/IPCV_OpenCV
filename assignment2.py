@@ -1,9 +1,7 @@
-from turtle import color
 import cv2 as cv
 import math
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
 plt.rcParams['figure.figsize']=[6,6]
 
 
