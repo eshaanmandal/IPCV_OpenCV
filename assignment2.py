@@ -17,7 +17,7 @@ def preprocess(image):
         image = cv.resize(image, (100,100))
     return image
 
-def histogram(img, bins=256):
+def histogram(img, bins):
     '''Calculates the histogram for the image, bins can be provided by the user or it assumes bins = 256 (8-bit image)'''
     hist_array = [0 for _ in range(bins)]
     for i in img:
@@ -25,13 +25,16 @@ def histogram(img, bins=256):
             hist_array[math.ceil(int(j)*(bins-1)/255)]+=1
     return  hist_array
 
-nbins = input("BINS (for default press d): ")
-nbins =  256 if nbins == 'd' else int(nbins)
+
 img_path = 'fox.jpeg'
-
-
 img = cv.imread(img_path)
 img = preprocess(img)
+
+nbins = input("BINS (for default press d): ")
+nbins =  int(np.max(img) - np.min(img)) if nbins == 'd' else int(nbins)
+
+print(np.max(img))
+print(np.min(img))
  
 h = histogram(img, bins=nbins)
 plt.bar(range(nbins),h,color='green')
