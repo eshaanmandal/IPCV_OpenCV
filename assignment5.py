@@ -31,4 +31,11 @@ def convolve(X, F):
     #return convolution  
     return out
 
+img = cv.imread('cuboid.jpeg',0)
+F = np.array([[1/9, 1/9, 1/9],[1/9, 1/9, 1/9],[1/9, 1/9, 1/9]], dtype='float32')
+blur_img = convolve(img, F)
+
+plt.imshow(blur_img, cmap='gray')
+plt.show()
+
 
