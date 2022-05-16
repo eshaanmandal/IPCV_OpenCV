@@ -18,9 +18,9 @@ edges = cv.Canny(gray, 50, 150, apertureSize=3)
 # Using probabilistic Hough transform
 lines = cv.HoughLinesP(edges,1,np.pi/180,threshold=50,minLineLength=2, maxLineGap=40)
 
-
+# print(lines.shape)
 for i in range(lines.shape[0]):
-    x1, y1, x2, y2 = lines[i][0] 
+    x1, y1, x2, y2 = lines[i,0]
     # Draws a line on the image, the lines are highlighted in red color
     cv.line(img_copy,(x1,y1), (x2,y2), (255, 0, 0),2)
 
